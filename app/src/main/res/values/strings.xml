@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SmallHistory</string>
+    <string name="error">Ошибка</string>
+    <string name="beginT">Моя визуальная новелла</string>
+    <string name="beginB">Начать</string>
+    <string name="hello">Привет! Меня зовут Кирюша. А тебя?</string>
+    <string name="enterName">Введите свое имя&#8230;</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="runChoice">Пойдём на пробежку</string>
+    <string name="campingChoice">Пойдём в поход</string>
+    <string name="fieldChoice">Погуляем по полю</string>
+    <string name="runText">Может, пойдем домой?..</string>
+    <string name="runB2">Да, и посмотрим фильм</string>
+    <string name="runB3">Да, и отпразднуем хэллоуин</string>
+    <string name="campingText">Как уютно&#8230; Но уже темнеет.</string>
+    <string name="campingB2">Пойдем домой и посмотрим фильм</string>
+    <string name="campingB3">Пойдем домой и отпразднуем Хэллоуин</string>
+    <string name="fieldText">Тебе грустно&#8230; Пойдем домой?</string>
+    <string name="fieldB2">Может, посмотрим фильм?</string>
+    <string name="fieldB3">Да, отпразднуем Хэллоуин</string>
+    <string name="filmText">Как тебе фильм?</string>
+    <string name="filmB2">Мне понравился!</string>
+    <string name="filmB3">Не очень&#8230;</string>
+    <string name="halloweenText">Получается очень красиво!</string>
+    <string name="halloweenB2">Да! Может, посмотрим фильм?</string>
+    <string name="halloweenB3">Да! Давай сделаем костюмы!</string>
+    <string name="suitText">Мне нравится твой костюм.</string>
+    <string name="suitB2">Твой тоже очень красивый!</string>
+    <string name="suitB3">А мне, если честно, не нравится твой&#8230;</string>
+    <string name="filmGood">Отлично! А теперь пора спать&#8230;</string>
+    <string name="filmBad">Жаль&#8230; Тогда пойдем спать?</string>
+    <string name="suitGood">Спасибо! Ну, пойдем спать?</string>
+    <string name="suitBad">Ничего, я не в обиде. Пойдем спать?</string>
+    <string name="late">Да, уже поздно&#8230;</string>
+    <string name="end">Спасибо, что поиграли!</string>
+    <string name="returnB">Пройти еще раз</string>
+</resources>
