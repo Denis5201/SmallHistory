@@ -16,8 +16,9 @@ class NameActivity : AppCompatActivity() {
         binding.buttonName.setOnClickListener {
             val userName = binding.enterName.text.toString()
             if (userName!="") {
-                val int = Intent(this, MainChoiceActivity::class.java)
-                int.putExtra("userName", userName)
+                val int = Intent(this, WorkActivity::class.java)
+                int.putExtra(Constants.NAME, userName)
+                int.putExtra(Constants.CHOICE, 0)
                 startActivity(int)
             }
         }

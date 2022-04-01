@@ -10,29 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmallHistory">
         <activity
+            android:name=".WorkActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".EndActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EvaluationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SuitActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FilmOrHalloweenActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainChoiceActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
