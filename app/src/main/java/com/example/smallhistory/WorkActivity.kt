@@ -1,10 +1,12 @@
 package com.example.smallhistory
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.smallhistory.databinding.ActivityStandartBinding
+import com.google.gson.Gson
+
 
 class WorkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStandartBinding
@@ -27,87 +29,59 @@ class WorkActivity : AppCompatActivity() {
         }
         binding.imageView.setImageResource(resource)
 
-        when (choose) {
-            0 -> binding.firstButton.visibility = View.VISIBLE
-            5, 6, 9, 10 -> binding.thirdButton.visibility = View.INVISIBLE
-        }
+        val jsonStr = assets.open("scenes.json").bufferedReader().use { it.readText() }
+        val jsonData = Gson().fromJson(jsonStr, Scenes::class.java)
 
-        binding.message.text = getString(when(choose) {
-            1 -> R.string.runText
-            2 -> R.string.campingText
-            3 -> R.string.fieldText
-            4 -> R.string.filmText
-            5 -> R.string.filmGood
-            6 -> R.string.filmBad
-            7 -> R.string.halloweenText
-            8 -> R.string.suitText
-            9 -> R.string.suitGood
-            10 -> R.string.suitBad
-            else -> R.string.error
-        })
-        binding.secondButton.text = getString(when(choose) {
-            0 -> R.string.campingChoice
-            1 -> R.string.runB2
-            2 -> R.string.campingB2
-            3 -> R.string.fieldB2
-            4 -> R.string.filmB2
-            5, 6, 9, 10 -> R.string.late
-            7 -> R.string.halloweenB2
-            8 -> R.string.suitB2
-            else -> R.string.error
-        })
-        binding.thirdButton.text = getString(when(choose) {
-            0 -> R.string.fieldChoice
-            1 -> R.string.runB3
-            2 -> R.string.campingB3
-            3 -> R.string.fieldB3
-            4 -> R.string.filmB3
-            7 -> R.string.halloweenB3
-            8 -> R.string.suitB3
-            else -> R.string.error
-        })
+        binding.message.text = jsonData.scenes[choose].text
 
-        val int = when(choose) {
-            5,6,9,10->Intent(this, EndActivity::class.java)
-            else->Intent(this, WorkActivity::class.java)
-        }
+        var myIntent = Intent(this, WorkActivity::class.java)
 
-        binding.secondButton.setOnClickListener {
-            val next = when (choose) {
-                0 -> 2
-                1, 2, 3 -> 4
-                4 -> 5
-                7 -> 4
-                8 -> 9
-                else -> 0
+        if (jsonData.scenes[choose].buttons.size==1){
+            binding.thirdButton.visibility = View.INVISIBLE
+            binding.secondButton.text = jsonData.scenes[choose].buttons[0].text
+
+            myIntent = Intent(this, EndActivity::class.java)
+            binding.secondButton.setOnClickListener {
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[0].next)
+                startActivity(myIntent)
             }
-            int.putExtra(Constants.CHOICE, next)
-            startActivity(int)
         }
-        binding.thirdButton.setOnClickListener {
-            val next = when (choose) {
-                0 -> 3
-                1, 2, 3 -> 7
-                4 -> 6
-                7 -> 8
-                8 -> 10
-                else -> 0
-            }
-            int.putExtra(Constants.CHOICE, next)
-            startActivity(int)
-        }
+        else if (jsonData.scenes[choose].buttons.size==2){
+            binding.secondButton.text = jsonData.scenes[choose].buttons[0].text
+            binding.thirdButton.text = jsonData.scenes[choose].buttons[1].text
 
-        if (choose == 0) {
+            binding.secondButton.setOnClickListener {
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[0].next)
+                startActivity(myIntent)
+            }
+            binding.thirdButton.setOnClickListener {
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[1].next)
+                startActivity(myIntent)
+            }
+        }
+        else if (jsonData.scenes[choose].buttons.size==3){
             binding.kirysha.visibility = View.VISIBLE
 
             val name = intent.getStringExtra(Constants.NAME)
             val mes = "Отлично, $name! Чем займёмся?"
             binding.message.text = mes
 
-            binding.firstButton.text = getString(R.string.runChoice)
+            binding.firstButton.visibility = View.VISIBLE
+            binding.firstButton.text = jsonData.scenes[choose].buttons[0].text
+            binding.secondButton.text = jsonData.scenes[choose].buttons[1].text
+            binding.thirdButton.text = jsonData.scenes[choose].buttons[2].text
+
             binding.firstButton.setOnClickListener {
-                int.putExtra(Constants.CHOICE, 1)
-                startActivity(int)
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[0].next)
+                startActivity(myIntent)
+            }
+            binding.secondButton.setOnClickListener {
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[1].next)
+                startActivity(myIntent)
+            }
+            binding.thirdButton.setOnClickListener {
+                myIntent.putExtra(Constants.CHOICE, jsonData.scenes[choose].buttons[2].next)
+                startActivity(myIntent)
             }
         }
     }

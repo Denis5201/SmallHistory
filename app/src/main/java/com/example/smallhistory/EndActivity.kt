@@ -17,9 +17,9 @@ class EndActivity : AppCompatActivity() {
         binding.button.text = getString(R.string.returnB)
 
         binding.button.setOnClickListener {
-            val int = Intent(this, MainActivity::class.java)
-            int.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(int)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
     }
 }

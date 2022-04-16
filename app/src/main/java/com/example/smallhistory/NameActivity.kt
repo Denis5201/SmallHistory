@@ -15,11 +15,11 @@ class NameActivity : AppCompatActivity() {
 
         binding.buttonName.setOnClickListener {
             val userName = binding.enterName.text.toString()
-            if (userName!="") {
-                val int = Intent(this, WorkActivity::class.java)
-                int.putExtra(Constants.NAME, userName)
-                int.putExtra(Constants.CHOICE, 0)
-                startActivity(int)
+            if (userName.isNotEmpty()) {
+                val intent = Intent(this, WorkActivity::class.java)
+                intent.putExtra(Constants.NAME, userName)
+                intent.putExtra(Constants.CHOICE, 0)
+                startActivity(intent)
             }
         }
     }
